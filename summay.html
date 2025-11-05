@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Summary</title>
+<link rel="stylesheet" href="Style.css">
+</head>
+<body>
+  <h1>Order Summary</h1>
+  <div id="summary"></div>
+  <script type="module">
+    import { loadCart } from "./js/storage.js";
+
+    const summaryDiv = document.getElementById("summary");
+    const cart = loadCart();
+    let subtotal = 0;
+
+    cart.forEach(i => {
+      subtotal += i.price * i.quantity;
+      const p = document.createElement("p");
+      p.textContent = `${i.name} x ${i.quantity} = $${i.price * i.quantity}`;
+      summaryDiv.appendChild(p);
+    });
+
+    const tax = subtotal * 0.05;
+    const total = subtotal + tax;
+    summaryDiv.innerHTML += `<h3>Subtotal: $${subtotal}</h3>`;
+    summaryDiv.innerHTML += `<h3>Tax: $${tax}</h3>`;
+    summaryDiv.innerHTML += `<h2>Total: $${total}</h2>`;
+    summaryDiv.innerHTML += `<button>Confirm Order</button>`;
+  </script>
+</body>
+</html>
