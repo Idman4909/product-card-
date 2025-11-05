@@ -1,0 +1,1 @@
+I have Complete In Task Three, I added the code that handles the product card. Here, I created product cards using JavaScript, and the data is also stored in localStorage. If the page is refreshed and the data disappears, it will be displayed again from localStorage.
